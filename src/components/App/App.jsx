@@ -54,6 +54,7 @@ export class App extends Component {
         display="flex"
         flexWrap="wrap"
         justifyContent="space-around"
+        gridGap={50}
         minHeight={450}
         py={2}
         px={3}

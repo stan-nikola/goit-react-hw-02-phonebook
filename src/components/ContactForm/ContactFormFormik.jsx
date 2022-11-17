@@ -38,7 +38,7 @@ export const ContactFormFormik = ({ onSubmit, contactsArr }) => {
     const nameArr = contactsArr.map(contact => contact.name);
     if (nameArr.includes(name)) {
       return toast.warn(`${name} is already in contacts.`, {
-        position: 'top-left',
+        position: 'top-center',
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -76,7 +76,7 @@ export const ContactFormFormik = ({ onSubmit, contactsArr }) => {
         </PbForm>
       </Formik>
       <ToastContainer
-        position="top-left"
+        position="top-center"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}
