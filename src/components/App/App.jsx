@@ -1,8 +1,11 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
 import { ContactFormFormik } from 'components/ContactForm/ContactFormFormik';
+// import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from '../ContactList/ContactList';
 import { Filter } from '../Filter/Filter';
+import { Box } from 'components/Box/Box';
+import { Title, Message } from './App.styled';
 
 export class App extends Component {
   state = {
@@ -43,21 +46,47 @@ export class App extends Component {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== id),
     }));
+    console.log(this.state.contacts.length < 2);
   };
 
   render() {
     return (
-      <>
-        <ContactFormFormik
-          onSubmit={this.addContact}
-          contactsArr={this.state.contacts}
-        />
-        <Filter value={this.state.filter} onChange={this.handleFilter} />
-        <ContactList
-          contacts={this.getVisibleContacts()}
-          onDeleteContact={this.deleteContact}
-        />
-      </>
+      <Box
+        display="flex"
+        flexWrap="wrap"
+        justifyContent="space-around"
+        py={2}
+        px={3}
+        bg="primary"
+        maxWidth={900}
+        mx="auto"
+        as="main"
+        borderRadius="normal"
+        mt={4}
+        boxShadow="main"
+      >
+        <Box display="flex" flexDirection="column" alignItems="center">
+          <Title>Phone Book</Title>
+
+          <ContactFormFormik
+            onSubmit={this.addContact}
+            contactsArr={this.state.contacts}
+          />
+        </Box>
+        <Box>
+          <Title>Contacts</Title>
+          {this.state.contacts.length < 1 ? (
+            <Message>There are no contacts in the phonebook</Message>
+          ) : (
+            <Filter value={this.state.filter} onChange={this.handleFilter} />
+          )}
+
+          <ContactList
+            contacts={this.getVisibleContacts()}
+            onDeleteContact={this.deleteContact}
+          />
+        </Box>
+      </Box>
     );
   }
 }

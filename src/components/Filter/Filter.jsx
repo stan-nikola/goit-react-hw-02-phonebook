@@ -1,11 +1,17 @@
+import { LabelName } from 'components/ContactForm/ContactFormFormik.styled';
 import PropTypes from 'prop-types';
-
+import { FilterLabel, InputFilterField } from './Filter.styled';
 export const Filter = ({ value, onChange }) => {
   return (
-    <label>
-      Finds contacts by name
-      <input type="text" name="filter" value={value} onChange={onChange} />
-    </label>
+    <FilterLabel>
+      <LabelName>Finds contacts by name</LabelName>
+      <InputFilterField
+        type="text"
+        name="filter"
+        value={value}
+        onChange={onChange}
+      />
+    </FilterLabel>
   );
 };
 

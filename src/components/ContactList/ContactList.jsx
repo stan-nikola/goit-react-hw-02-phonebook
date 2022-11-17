@@ -1,18 +1,29 @@
 import PropTypes from 'prop-types';
+import { BsFillXCircleFill } from 'react-icons/bs';
+import { ContactItem, ContactBtn, ContactName } from './ContactList.styled';
+import { Box } from './../Box/Box';
 export const ContactList = ({ contacts, onDeleteContact }) => {
   return (
-    <ul>
+    <Box
+      as="ul"
+      bg="third"
+      borderRadius="normal"
+      boxShadow="items"
+      p={2}
+      minWidth={296}
+    >
       {contacts.map(({ id, name, number }) => {
         return (
-          <li key={id}>
-            {name}:{number}
-            <button type="button" onClick={() => onDeleteContact(id)}>
-              Delete
-            </button>
-          </li>
+          <ContactItem key={id}>
+            <ContactName>{name}:</ContactName>
+            <span>{number}</span>
+            <ContactBtn type="button" onClick={() => onDeleteContact(id)}>
+              <BsFillXCircleFill />
+            </ContactBtn>
+          </ContactItem>
         );
       })}
-    </ul>
+    </Box>
   );
 };
 ContactList.propTypes = {
