@@ -18,11 +18,14 @@ const schema = yup.object({
   name: yup
     .string()
     .min(4, 'Name must be at least 4 letters long')
+    .max(20, 'Name must be no longer than 20 letters')
     .required(
       "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
     ),
   number: yup
     .string()
+    .min(7, 'Number must be at least 7 digits long')
+    .max(10, 'Number must be no longer than 10 digits')
     .required(
       'Phone number must be min 6 digits can contain dashes. Phone number cant contains spaces and cant start with +'
     )
@@ -35,7 +38,7 @@ export const ContactFormFormik = ({ onSubmit, contactsArr }) => {
     const nameArr = contactsArr.map(contact => contact.name);
     if (nameArr.includes(name)) {
       return toast.warn(`${name} is already in contacts.`, {
-        position: 'top-right',
+        position: 'top-left',
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -73,7 +76,7 @@ export const ContactFormFormik = ({ onSubmit, contactsArr }) => {
         </PbForm>
       </Formik>
       <ToastContainer
-        position="top-right"
+        position="top-left"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}

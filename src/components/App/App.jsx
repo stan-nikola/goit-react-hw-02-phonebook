@@ -46,7 +46,6 @@ export class App extends Component {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== id),
     }));
-    console.log(this.state.contacts.length < 2);
   };
 
   render() {
@@ -55,6 +54,7 @@ export class App extends Component {
         display="flex"
         flexWrap="wrap"
         justifyContent="space-around"
+        minHeight={450}
         py={2}
         px={3}
         bg="primary"
@@ -66,7 +66,7 @@ export class App extends Component {
         boxShadow="main"
       >
         <Box display="flex" flexDirection="column" alignItems="center">
-          <Title>Phone Book</Title>
+          <Title>PhoneBook</Title>
 
           <ContactFormFormik
             onSubmit={this.addContact}
@@ -75,16 +75,18 @@ export class App extends Component {
         </Box>
         <Box>
           <Title>Contacts</Title>
-          {this.state.contacts.length < 1 ? (
-            <Message>There are no contacts in the phonebook</Message>
-          ) : (
+          {this.state.contacts.length > 1 && (
             <Filter value={this.state.filter} onChange={this.handleFilter} />
           )}
 
-          <ContactList
-            contacts={this.getVisibleContacts()}
-            onDeleteContact={this.deleteContact}
-          />
+          {this.state.contacts.length < 1 ? (
+            <Message>There are no contacts in your phonebook</Message>
+          ) : (
+            <ContactList
+              contacts={this.getVisibleContacts()}
+              onDeleteContact={this.deleteContact}
+            />
+          )}
         </Box>
       </Box>
     );

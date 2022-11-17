@@ -4,11 +4,11 @@ export const ContactItem = styled.li`
   display: flex;
 
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   height: 32px;
   min-width: 60px;
   text-align: center;
-  padding: ${p => p.theme.space[1]}px;
+  padding: ${p => p.theme.space[2]}px;
   border-radius: ${p => p.theme.radii.normal};
   box-shadow: ${p => p.theme.shadows.items};
   background-color: #face7f;

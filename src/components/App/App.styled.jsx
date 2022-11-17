@@ -7,5 +7,7 @@ export const Title = styled.h2`
 `;
 
 export const Message = styled.h3`
+  font-size: ${p => p.theme.fontSizes.m};
+  max-width: 312px;
   text-align: center;
 `;
