@@ -4,7 +4,7 @@ import { MdOutlineContactPhone } from 'react-icons/md';
 import { mask, phoneRegExp } from 'constants/phoneValidate';
 import * as yup from 'yup';
 import { ToastContainer, toast } from 'react-toastify';
-import { toastOptions } from 'options/toastOptions';
+import { toastOptions } from 'settings/toastOptions';
 
 import 'react-toastify/dist/ReactToastify.css';
 import {

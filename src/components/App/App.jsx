@@ -68,7 +68,6 @@ export class App extends Component {
           as="section"
         >
           <Title>PhoneBook</Title>
-
           <ContactFormFormik
             onSubmit={this.addContact}
             onChange={this.state.contacts}
@@ -80,7 +79,6 @@ export class App extends Component {
           {this.state.contacts.length > 1 && (
             <Filter value={this.state.filter} onChange={this.handleFilter} />
           )}
-
           {this.state.contacts.length < 1 ? (
             <Message>There are no contacts in your phonebook</Message>
           ) : (
