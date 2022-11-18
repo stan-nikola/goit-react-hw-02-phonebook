@@ -5,7 +5,7 @@ import { ContactFormFormik } from 'components/ContactForm/ContactFormFormik';
 import { ContactList } from '../ContactList/ContactList';
 import { Filter } from '../Filter/Filter';
 import { Box } from 'components/Box/Box';
-import { Title, Message } from './App.styled';
+import { Title, SupTitle, Message } from './App.styled';
 
 export class App extends Component {
   state = {
@@ -54,7 +54,7 @@ export class App extends Component {
         display="flex"
         flexWrap="wrap"
         justifyContent="space-around"
-        gridGap={50}
+        gridGap={30}
         minHeight={450}
         py={2}
         px={3}
@@ -81,7 +81,7 @@ export class App extends Component {
           />
         </Box>
         <Box as="section">
-          <Title>Contacts</Title>
+          <SupTitle>Contacts</SupTitle>
           {this.state.contacts.length > 1 && (
             <Filter value={this.state.filter} onChange={this.handleFilter} />
           )}

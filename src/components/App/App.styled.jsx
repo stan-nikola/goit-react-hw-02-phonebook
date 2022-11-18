@@ -1,7 +1,12 @@
 import styled from '@emotion/styled';
 
-export const Title = styled.h2`
+export const Title = styled.h1`
   font-size: ${p => p.theme.fontSizes.xl};
+  text-align: center;
+  margin-bottom: ${p => p.theme.space[3]}px;
+`;
+export const SupTitle = styled.h2`
+  font-size: ${p => p.theme.fontSizes.l};
   text-align: center;
   margin-bottom: ${p => p.theme.space[3]}px;
 `;
