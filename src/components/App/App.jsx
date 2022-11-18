@@ -66,7 +66,12 @@ export class App extends Component {
         mt={4}
         boxShadow="main"
       >
-        <Box display="flex" flexDirection="column" alignItems="center">
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          as="section"
+        >
           <Title>PhoneBook</Title>
 
           <ContactFormFormik
@@ -74,7 +79,7 @@ export class App extends Component {
             contactsArr={this.state.contacts}
           />
         </Box>
-        <Box>
+        <Box as="section">
           <Title>Contacts</Title>
           {this.state.contacts.length > 1 && (
             <Filter value={this.state.filter} onChange={this.handleFilter} />

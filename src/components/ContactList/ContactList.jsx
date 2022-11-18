@@ -16,7 +16,7 @@ export const ContactList = ({ contacts, onDeleteContact }) => {
         return (
           <ContactItem key={id}>
             <ContactName>{name}:</ContactName>
-            <span>{number}</span>
+            {number}
             <ContactBtn type="button" onClick={() => onDeleteContact(id)}>
               <BsFillXCircleFill />
             </ContactBtn>

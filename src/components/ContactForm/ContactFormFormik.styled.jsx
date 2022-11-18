@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { Form, Field, ErrorMessage } from 'formik';
-
+import MaskedInput from 'react-text-mask';
 export const PbForm = styled(Form)`
   margin-bottom: ${p => p.theme.space[3]}px;
 `;
@@ -9,7 +9,7 @@ export const Label = styled.label`
   position: relative;
   display: flex;
   flex-direction: column;
-  max-width: 60%;
+
   &:not(:last-child) {
     margin-bottom: ${p => p.theme.space[3]}px;
   }
@@ -25,14 +25,24 @@ export const InputField = styled(Field)`
   border-radius: ${p => p.theme.radii.normal};
   border: ${p => p.theme.borders.light};
   border-color: ${p => p.theme.colors.mainBorder};
+  padding-left: ${p => p.theme.space[2]}px;
+`;
+export const InputMaskField = styled(MaskedInput)`
+  height: 24px;
+  min-width: 176px;
+  border-radius: ${p => p.theme.radii.normal};
+  border: ${p => p.theme.borders.light};
+  border-color: ${p => p.theme.colors.mainBorder};
+  padding-left: ${p => p.theme.space[2]}px;
 `;
 export const ErrorMessageField = styled(ErrorMessage)`
   position: absolute;
   top: 64px;
 
-  right: -73px;
-  z-index: 10;
-  width: 180px;
+  right: 50%;
+  transform: translateX(50%);
+
+  width: 100%;
   z-index: 10;
 
   font-style: italic;
@@ -40,9 +50,9 @@ export const ErrorMessageField = styled(ErrorMessage)`
   border-color: ${p => p.theme.colors.secondaryBorder};
   padding: ${p => p.theme.space[1]}px;
   background-color: ${p => p.theme.colors.notification};
-
   border-radius: ${p => p.theme.radii.normal};
   font-size: ${p => p.theme.fontSizes.s};
+  text-align: center;
 `;
 export const SubmitBtn = styled.button`
   display: flex;

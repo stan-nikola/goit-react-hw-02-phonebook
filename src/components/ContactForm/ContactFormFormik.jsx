@@ -1,6 +1,11 @@
+import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 import { MdOutlineContactPhone } from 'react-icons/md';
-import { ToastContainer, toast, Flip } from 'react-toastify';
+import { mask, phoneRegExp } from 'constants/phoneValidate';
+import * as yup from 'yup';
+import { ToastContainer, toast } from 'react-toastify';
+import { toastOptions } from 'options/toastOptions';
+
 import 'react-toastify/dist/ReactToastify.css';
 import {
   PbForm,
@@ -9,44 +14,30 @@ import {
   InputField,
   ErrorMessageField,
   SubmitBtn,
+  InputMaskField,
 } from './ContactFormFormik.styled';
-import * as yup from 'yup';
 
-const phoneRegExp =
-  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const schema = yup.object({
   name: yup
     .string()
     .min(4, 'Name must be at least 4 letters long')
-    .max(20, 'Name must be no longer than 20 letters')
+    .max(16, 'Name must be not longer than 16 letters')
     .required(
-      "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+      "Please type name. For example Adrian, Jacob Mercer, Charles de Batz, Castelmore d'Artagnan"
     ),
   number: yup
     .string()
-    .min(7, 'Number must be at least 7 digits long')
-    .max(10, 'Number must be no longer than 10 digits')
-    .required(
-      'Phone number must be min 6 digits can contain dashes. Phone number cant contains spaces and cant start with +'
-    )
+    .required('Please type phone number')
     .matches(phoneRegExp, 'Phone number is not valid'),
 });
 
 const initialValues = { name: '', number: '' };
+
 export const ContactFormFormik = ({ onSubmit, contactsArr }) => {
   const handleSubmit = ({ name, number }, { resetForm }) => {
     const nameArr = contactsArr.map(contact => contact.name);
     if (nameArr.includes(name)) {
-      return toast.warn(`${name} is already in contacts.`, {
-        position: 'top-center',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      return toast.warn(`${name} is already in contacts.`, toastOptions);
     }
     onSubmit(name, number);
     resetForm();
@@ -61,12 +52,22 @@ export const ContactFormFormik = ({ onSubmit, contactsArr }) => {
         <PbForm>
           <Label>
             <LabelName>Name</LabelName>
-            <InputField type="text" name="name" />
+            <InputField type="text" name="name" placeholder="Bruce Lee" />
             <ErrorMessageField name="name" component="div" />
           </Label>
           <Label>
             <LabelName>Number</LabelName>
-            <InputField name="number" type="tel" />
+            <InputField name="number">
+              {({ field }) => (
+                <InputMaskField
+                  {...field}
+                  mask={mask}
+                  placeholder="(012)-345-6789"
+                  type="tel"
+                />
+              )}
+            </InputField>
+
             <ErrorMessageField name="number" component="div" />
           </Label>
           <SubmitBtn type="submit">
@@ -75,19 +76,12 @@ export const ContactFormFormik = ({ onSubmit, contactsArr }) => {
           </SubmitBtn>
         </PbForm>
       </Formik>
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss={false}
-        draggable
-        pauseOnHover
-        theme="light"
-        transition={Flip}
-      />
+      <ToastContainer />
     </>
   );
+};
+
+ContactFormFormik.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  contactsArr: PropTypes.array.isRequired,
 };
