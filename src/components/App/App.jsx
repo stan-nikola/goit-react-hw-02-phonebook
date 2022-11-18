@@ -76,6 +76,7 @@ export class App extends Component {
 
           <ContactFormFormik
             onSubmit={this.addContact}
+            onChange={this.state.contacts}
             contactsArr={this.state.contacts}
           />
         </Box>
