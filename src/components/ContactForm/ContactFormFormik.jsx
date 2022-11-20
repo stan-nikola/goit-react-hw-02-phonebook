@@ -3,7 +3,8 @@ import { Formik } from 'formik';
 import { MdOutlineContactPhone } from 'react-icons/md';
 import { mask, phoneRegExp } from 'constants/phoneValidate';
 import * as yup from 'yup';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
+import { Notification } from 'components/Notifications/Notifications';
 import { toastOptions } from 'settings/toastOptions';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -78,7 +79,7 @@ export const ContactFormFormik = ({ onSubmit, contactsArr }) => {
           </SubmitBtn>
         </PbForm>
       </Formik>
-      <ToastContainer />
+      <Notification />
     </>
   );
 };
