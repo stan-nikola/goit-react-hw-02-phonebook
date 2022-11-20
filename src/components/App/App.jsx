@@ -8,6 +8,9 @@ import { Box } from 'components/Box/Box';
 import { Title, SupTitle, Message } from './App.styled';
 import data from '../../data/data.json';
 
+import { toastOptions } from 'settings/toastOptions';
+import { toast } from 'react-toastify';
+
 export class App extends Component {
   state = {
     contacts: data,
@@ -48,9 +51,9 @@ export class App extends Component {
       contact.name.toLocaleLowerCase().includes(normalizeFilter)
     );
 
-    // if (visibleContacts.length > 1) {
-    //   // toast.warn(` No matches`, toastOptions);
-    // }
+    if (visibleContacts.length < 1) {
+      toast.warn(` No matches found`, toastOptions);
+    }
 
     return visibleContacts;
   };
