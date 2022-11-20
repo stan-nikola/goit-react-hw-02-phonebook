@@ -33,15 +33,32 @@ export class App extends Component {
     const { filter, contacts } = this.state;
     const normalizeFilter = filter.toLocaleLowerCase();
 
-    return contacts.filter(contact =>
+    const visibleContacts = contacts.filter(contact =>
       contact.name.toLocaleLowerCase().includes(normalizeFilter)
     );
+
+    // if (visibleContacts.length > 1) {
+    //   // toast.warn(` No matches`, toastOptions);
+    // }
+
+    return visibleContacts;
   };
   deleteContact = id => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== id),
     }));
   };
+  componentDidMount() {
+    const parseContacts = JSON.parse(localStorage.getItem('contacts'));
+    if (parseContacts) {
+      this.setState({ contacts: parseContacts });
+    }
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
 
   render() {
     return (
@@ -79,8 +96,11 @@ export class App extends Component {
           {this.state.contacts.length > 1 && (
             <Filter value={this.state.filter} onChange={this.handleFilter} />
           )}
-          {this.state.contacts.length < 1 ? (
-            <Message>There are no contacts in your phonebook</Message>
+          {this.state.contacts.length < 1 ||
+          this.getVisibleContacts().length < 1 ? (
+            <Message>
+              There are no contacts or matches in your phonebook
+            </Message>
           ) : (
             <ContactList
               contacts={this.getVisibleContacts()}

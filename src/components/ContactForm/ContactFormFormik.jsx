@@ -35,8 +35,10 @@ const initialValues = { name: '', number: '' };
 
 export const ContactFormFormik = ({ onSubmit, contactsArr }) => {
   const handleSubmit = ({ name, number }, { resetForm }) => {
-    const nameArr = contactsArr.map(contact => contact.name);
-    if (nameArr.includes(name)) {
+    const nameArr = contactsArr.map(contact =>
+      contact.name.toLocaleLowerCase()
+    );
+    if (nameArr.includes(name.toLocaleLowerCase())) {
       return toast.warn(`${name} is already in contacts.`, toastOptions);
     }
     onSubmit(name, number);
