@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/goit-react-hw-02-phonebook/static/css/main.cd457ea4.css",
-    "main.js": "/goit-react-hw-02-phonebook/static/js/main.a4c28852.js",
+    "main.js": "/goit-react-hw-02-phonebook/static/js/main.9cb366da.js",
     "static/media/baloo-chettan-2-v16-latin-700.svg": "/goit-react-hw-02-phonebook/static/media/baloo-chettan-2-v16-latin-700.b5c235a4332df251c300.svg",
     "static/media/baloo-chettan-2-v16-latin-500.svg": "/goit-react-hw-02-phonebook/static/media/baloo-chettan-2-v16-latin-500.70430b6f9c84e319965f.svg",
     "static/media/baloo-chettan-2-v16-latin-regular.svg": "/goit-react-hw-02-phonebook/static/media/baloo-chettan-2-v16-latin-regular.c1eb2565f10cd7a3d673.svg",
@@ -19,10 +19,10 @@
     "static/media/baloo-chettan-2-v16-latin-regular.woff2": "/goit-react-hw-02-phonebook/static/media/baloo-chettan-2-v16-latin-regular.e17d096dc51384511926.woff2",
     "index.html": "/goit-react-hw-02-phonebook/index.html",
     "main.cd457ea4.css.map": "/goit-react-hw-02-phonebook/static/css/main.cd457ea4.css.map",
-    "main.a4c28852.js.map": "/goit-react-hw-02-phonebook/static/js/main.a4c28852.js.map"
+    "main.9cb366da.js.map": "/goit-react-hw-02-phonebook/static/js/main.9cb366da.js.map"
   },
   "entrypoints": [
     "static/css/main.cd457ea4.css",
-    "static/js/main.a4c28852.js"
+    "static/js/main.9cb366da.js"
   ]
 }
