@@ -92,11 +92,15 @@ export class App extends Component {
           {this.state.contacts.length > 1 && (
             <Filter value={this.state.filter} onChange={this.handleFilter} />
           )}
-          {this.state.contacts.length < 1 ||
-          this.getVisibleContacts().length < 1 ? (
-            <Message>
-              There are no contacts or matches in your phonebook
-            </Message>
+          {this.state.contacts.length < 1 ? (
+            <Message>There are no contacts in your phonebook</Message>
+          ) : (
+              <ContactList
+                contacts={this.getVisibleContacts()}
+                onDeleteContact={this.deleteContact}
+              />
+            ) && this.getVisibleContacts().length < 1 ? (
+            <Message>No matches for your search</Message>
           ) : (
             <ContactList
               contacts={this.getVisibleContacts()}
